@@ -1,0 +1,7 @@
+*.pyc
+*.pyo
+.env
+.venv/*
+Log/*
+Dockerfile
+docker-compose.yml

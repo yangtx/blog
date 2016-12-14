@@ -1,0 +1,8 @@
+config bcrypt==3.1.1
+cffi==1.9.1
+Markdown==2.6.7
+psycopg2==2.6.2
+pycparser==2.17
+six==1.10.0
+SQLAlchemy==1.1.4
+tornado==4.4.2

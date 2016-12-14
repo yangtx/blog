@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+  {% if error %}
+  <span style="color: red">Error: {{ error }}</span><p>
+  {% end %}
+
+
+<div class="container">
+
+  <form action="/auth/login" method="post" role="form">
+    <h2>Please Sign In</h2>
+
+    Email: <input name="email" type="text" placeholder="xxx@gmail.com" required autofocus>
+    <br/>
+    
+    Password: <input name="password" type="password" placeholder="********" required>
+    <br/>
+    
+    <button class="btn" type="button">SignIn</button>
+    <br/>
+
+    <br/>
+    <input type="submit">
+  {% module xsrf_form_html() %}
+  </form>
+
+  <div id="result"></div>
+  <br/>
+
+</div>
+
+<script>
+$(function() {
+  $('.btn').click(function() {
+    var $result = $('#result');
+    var $email = $('input[name="email"]').val();
+    var $password = $('input[name="password"]').val();
+    $.ajax({
+      url: '/auth/login',
+      data: $('form').serialize(),
+      type: 'POST',
+      dataType: 'json'
+    }).done(function(data) {
+      if (!data.r) {
+        $result.html(data.rs);
+      } else {
+        $result.html(data.error);
+      }
+    });
+  });
+});
+</script>
+
+{% end %}
